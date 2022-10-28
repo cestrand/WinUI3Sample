@@ -10,6 +10,7 @@ using WinUI3Sample.Helpers;
 using WinUI3Sample.Services;
 using WinUI3Sample.ViewModels;
 using WinUI3Sample.Views;
+using Microsoft.Windows.AppNotifications;
 
 namespace WinUI3Sample;
 
@@ -74,6 +75,27 @@ public partial class App : Application
         Build();
 
         UnhandledException += App_UnhandledException;
+
+        // Register notification manager
+        AppNotificationManager.Default.Register();
+        AppDomain.CurrentDomain.ProcessExit += new EventHandler((object? o, EventArgs args) =>
+        {
+            AppNotificationManager.Default.Unregister();
+        });
+
+        // Display startup toast notification
+        // see: https://learn.microsoft.com/en-us/windows/apps/design/shell/tiles-and-notifications/adaptive-interactive-toasts?tabs=builder-syntax
+        var notificationPayload = new string(
+                "<toast>"+
+                    "<visual>"+
+                        "<binding template = \"ToastGeneric\">"+
+                            "<text>Starting...</text>"+
+                        "</binding>"+
+                    "</visual>"+
+                "</toast>"
+            );
+        var toast = new AppNotification(notificationPayload);
+        AppNotificationManager.Default.Show(toast);
     }
 
     private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
