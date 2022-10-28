@@ -6,7 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid x:Name="ContentArea">
-        
-    </Grid>
+    <StackPanel x:Name="ContentArea" Orientation="Vertical">
+        <TextBlock Text="Hi there. I am developing this app to learn WinUI3 application framework."/>
+        <HyperlinkButton Content="WinUI3 docs" NavigateUri="https://learn.microsoft.com/en-us/windows/apps/winui/"/>
+        <Button Content="WinUI3 documentation" Click="OpenUri_WinUI3_Documentation" ></Button>
+    </StackPanel>
 </Page>
