@@ -15,6 +15,7 @@ public class PageService : IPageService
     public PageService()
     {
         Configure<MainViewModel, MainPage>();
+        Configure<SpiralViewModel, SpiralPage>();
     }
 
     public Type GetPageType(string key)

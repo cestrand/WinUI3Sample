@@ -69,6 +69,8 @@ public partial class App : Application
             services.AddTransient<MainPage>();
             services.AddTransient<ShellPage>();
             services.AddTransient<ShellViewModel>();
+            services.AddTransient<SpiralViewModel>();
+            services.AddTransient<SpiralPage>();
 
             // Configuration
         }).
